@@ -1,0 +1,77 @@
+File
+
+checkeu.php          -- Check email or username Whether or not the same for other user of database
+register.php         -- Sign up page
+login.php            -- Sign in page
+	
+sendmail.php         -- Send mail for forget password user
+mailoverdue.php      -- Check whether the email is overdue
+resetpass.php        -- Reset the password
+
+
+
+Web Process
+
+If (new user){
+	link into register.php
+	(When user input username or email){
+		use checkeu.php to check email or username
+	}
+}
+If (old user){
+	link into login.php
+}
+If (old user forget password){
+	link into sendmail.php
+	(When user use email get random){
+		use mailoverdue.php to check random overdue
+		If(random not overdue){
+			link into resetpass.php
+		}
+	}
+}
+
+
+
+API
+
+Page                  Parameter
+
+checkeu.php           parameter
+
+register.php          username,password,email
+
+login.php             username,password
+
+sendmail.php          email
+
+mailoverdue.php       random
+
+resetpass.php         random,password
+
+
+
+API Code
+
+200 : 操作成功
+201 ：注册成功
+202 : 登录成功
+210 : 没有重名
+220 : 邮件已发送
+230 : 链接有效
+
+
+301 ：用户字符错误
+302 ：密码字符错误
+303 ：邮箱字符错误
+304 : 用户有重名
+305 : 邮箱有重名
+306 : 用户名或密码错误
+307 : 找不到邮箱
+308 : 找不到参数
+
+400 ：参数缺失
+401 ：注册失败
+402 ：登录失败
+403 : 链接失效
+405 : 参数过多

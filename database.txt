@@ -1,0 +1,72 @@
+user
+	uid          -  UID
+	username     -  界面显示用户名
+	password     -  登录密码
+	email        -  E-Mail
+	salt         -  加密盐
+	token        -  CSRF令牌 隐藏表单
+
+create table user (
+uid int primary key auto_increment,
+username varchar(100) NOT NULL,
+password varchar(200) NOT NULL,
+email varchar(50) NOT NULL,
+salt varchar(50) NOT NULL,
+token varchar(50) NOT NULL
+);
+
+mission
+	uid          -  UID
+	user         -  任务所有者
+	title        -  任务描述
+	details      -  详细内容
+	start_time   -  开始时间
+	finish_time  -  结束时间
+	summary      -  任务结束后的描述
+	situation    -  任务完成情况
+	type         -  数据库中任务的类型
+
+create table mission(
+uid int primary key auto_increment,
+user varchar(100) NOT NULL,
+start_time timestamp,
+finish_time timestamp,
+title TEXT NOT NULL,
+details TEXT NOT NULL,
+summary TEXT NOT NULL,
+situation char(2) NOT NULL,
+type char(2) NOT NULL
+);
+
+email
+	uid          -  UID
+	email        -  邮箱地址
+	rang         -  随机数
+	time         -  发送时间
+
+create table email(
+uid int primary key auto_increment,
+username varchar(100) NOT NULL,
+email varchar(50) NOT NULL,
+random varchar(200) NOT NULL,
+time timestamp
+);
+
+
+login -> html:
+
+	js - username = *** & password = js(sha512(password))
+
+login -> php:
+
+	salt = md5(uniqid(rand(), true))
+	token = md5(username+salt)
+
+	register ->> into mysql password = sha512($_POST['password'] + php_salt)
+				 into mysql parameter --->>> username password e-mail salt token
+
+	login ->> find mysql password == sha512($_POST['password'] + mysql_salt)
+
+
+https://www.cnblogs.com/woider/p/6980456.html      PHP-E-Mail
+https://www.cnblogs.com/phpxuetang/p/5656266.html  PHP-SET-OPENSSL

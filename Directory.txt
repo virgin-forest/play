@@ -1,0 +1,30 @@
+Folder:
+
+	inc                  -- Connect database
+
+File:
+
+	checkeu.php          -- Check email or username Whether or not the same for other user of database
+	register.php         -- Sign up page
+	login.php            -- Sign in page
+	
+	sendmail.php         -- Send mail for forget password user
+	mailoverdue.php      -- Check whether the email is overdue
+	resetpass.php        -- Reset the password
+
+	test.php             -- Used to test short code
+
+
+Plug-in:
+
+	class.phpmailer.php  -- Send E-Mail Plug-in
+	class.smtp.php       -- Send E-Mail Plug-in
+	QQMailer.php         -- Send E-Mail Plug-in
+
+Description:
+
+	vps.txt              -- The server information
+	code.txt             -- Web front desk state code description
+	database.txt         -- Database structure description
+	Directory.txt        -- Directory description
+	README.md            -- Read me file
